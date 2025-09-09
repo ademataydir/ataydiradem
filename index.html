@@ -12,45 +12,57 @@
       --text: #e6f1ff;
       --muted: #8aa0b3;
       --accent: #00e5ff;
-      --accent-2: #00ffa3;
       --border: #1f2a37;
     }
-    * { box-sizing: border-box; }
+    [data-theme="light"] {
+      --bg: #f9fafb;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --accent: #0284c7;
+      --border: #d1d5db;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       background: var(--bg);
       color: var(--text);
       font-family: Inter, sans-serif;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
     header {
-      background: rgba(10,14,20,0.8);
+      background: rgba(10,14,20,0.9);
       border-bottom: 1px solid var(--border);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s;
     }
+    [data-theme="light"] header { background: rgba(255,255,255,0.9); }
+
     .brand {
       font-family: Montserrat, sans-serif;
       font-weight: 800;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    .badge {
-      width: 24px;
-      height: 24px;
-      background: radial-gradient(circle, rgba(0,255,163,.35), rgba(0,229,255,.15));
+    .brand .badge {
+      width: 28px;
+      height: 28px;
+      background: radial-gradient(circle, rgba(0,229,255,.3), rgba(0,229,255,.1));
       border: 1px solid #114b5f;
-      border-radius: 6px;
+      border-radius: 8px;
       display: grid;
       place-items: center;
     }
     nav {
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
     }
     nav button {
       background: none;
@@ -60,26 +72,73 @@
       cursor: pointer;
       padding: 0.5rem 1rem;
       border-radius: 8px;
+      transition: 0.3s;
     }
     nav button.active, nav button:hover {
       color: var(--text);
-      background: linear-gradient(135deg, rgba(0,229,255,.14), rgba(0,255,163,.12));
+      background: rgba(0,229,255,0.12);
     }
-    .tab-content {
-      display: none;
-      padding: 2rem;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+    .theme-toggle { cursor: pointer; font-size: 1.3rem; margin-left: 1rem; }
+
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
     }
     h1, h2, h3 {
       font-family: Montserrat, sans-serif;
+      margin-bottom: 1rem;
     }
+
+    /* Hero */
+    #startseite {
+      text-align: center;
+    }
+    #startseite img {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 2px 24px #00e5ff55;
+      margin-bottom: 1rem;
+    }
+    .cta {
+      margin-top: 1.5rem;
+    }
+    .cta a {
+      display: inline-block;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .cta a:hover { background: #00bcd4; }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .card {
+      background: #131b26;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: 0.3s;
+    }
+    [data-theme="light"] .card { background: #fff; }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,229,255,0.1);
+    }
+    .card h3 { margin-bottom: 0.5rem; color: var(--accent); }
+
+    /* Kontakt */
     form {
       display: flex;
       flex-direction: column;
@@ -93,7 +152,9 @@
       border: 1px solid var(--border);
       background: #131b26;
       color: var(--text);
+      transition: 0.3s;
     }
+    [data-theme="light"] input, [data-theme="light"] textarea { background: #f9fafb; }
     button[type="submit"] {
       padding: 0.8rem;
       border: none;
@@ -103,9 +164,8 @@
       font-weight: bold;
       cursor: pointer;
     }
-    button[type="submit"]:hover {
-      background: var(--accent-2);
-    }
+    button[type="submit"]:hover { background: #00bcd4; }
+
     .social-icons {
       display: flex;
       justify-content: center;
@@ -115,16 +175,25 @@
     .social-icons a {
       color: var(--text);
       font-size: 1.5rem;
+      transition: 0.3s;
     }
+    .social-icons a:hover { color: var(--accent); }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      header { flex-direction: column; align-items: flex-start; }
-      nav { justify-content: flex-start; }
+      nav { display: none; flex-direction: column; gap: 0.5rem; }
+      nav.open { display: flex; margin-top: 1rem; }
+      .menu-toggle { display: block; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="brand"><span class="badge">◆</span><span>Adem Ataydir</span></div>
+    <div class="brand"><span class="badge">◆</span>Adem Ataydir</div>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <i class="fas fa-sun theme-toggle" id="themeToggle"></i>
+      <i class="fas fa-bars menu-toggle"></i>
+    </div>
     <nav>
       <button class="tablink active" data-tab="startseite">Startseite</button>
       <button class="tablink" data-tab="ueber-mich">Über mich</button>
@@ -134,98 +203,95 @@
       <button class="tablink" data-tab="kontakt">Kontakt</button>
     </nav>
   </header>
-  
-</div>
-  <div id="startseite" class="tab-content active">
-<img src="profil.jpg" alt="Adem Ataydir" style="width:160px;height:160px;border-radius:50%;display:block;margin:0 auto 1rem auto;border:3px solid var(--accent);box-shadow:0 2px 24px #00e5ff55;">
+
+  <!-- Startseite -->
+  <section id="startseite" class="tab-content active">
+    <img src="profil.jpg" alt="Adem Ataydir">
     <h1>Hallo, ich bin Adem Ataydir<br><span style="color:var(--accent)">Cybersecurity Engineer</span></h1>
     <p>Ich unterstütze Unternehmen dabei, Systeme und Daten effektiv zu schützen.</p>
-  </div>
+    <div class="cta">
+      <a href="CV_Adem_Ataydir.pdf" target="_blank">📄 Lebenslauf herunterladen</a>
+    </div>
+  </section>
 
-  <div id="ueber-mich" class="tab-content">
-    <p>Hallo, ich bin Adem Ataydır.</p>
-<p>Mehr als 10 Jahre habe ich als IT-Techniker gearbeitet und dabei Computer­systeme eingerichtet, gewartet und betreut.</p>
-<p>Im Jahr 2024 habe ich ein intensives einjähriges Cybersecurity-Trainingsprogramm abgeschlossen. </p>
-<p>In dieser Zeit konnte ich praktische Erfahrungen mit Tools und Konzepten wie Firewalls, EDR, SIEM und Penetration Testing sammeln.</p>
-<p>Anschließend absolvierte ich ein zweimonatiges Praktikum, in dem ich die zuvor erworbenen theoretischen Kenntnisse in der Praxis anwenden und vertiefen konnte.</p>
-<p>Darüber hinaus bilde ich mich kontinuierlich weiter, unter anderem durch praktische Übungen auf der Plattform TryHackMe.</p>
-<p>Es ist meine Leidenschaft, die neuesten Technologien im Bereich der Cybersicherheit zu verfolgen, Systeme zu erkunden und mein Wissen stetig zu erweitern.</p>
-<p>Mein Ziel ist es, einer der führenden Cybersecurity-Experten zu werden und mich auf diesem Weg jeden Tag weiterzuentwickeln.</p>
-<p>Fokus auf SIEM, EDR, Firewall, Pentesting und mehr.</p>
-  </div>
+  <!-- Über mich -->
+  <section id="ueber-mich" class="tab-content">
+    <h2>Über mich</h2>
+    <p>Mehr als 10 Jahre habe ich als IT-Techniker gearbeitet und Systeme eingerichtet, gewartet und betreut. 2024 habe ich ein intensives Cybersecurity-Training abgeschlossen und seither praktische Erfahrungen mit SIEM, Firewalls, EDR und Penetration Testing gesammelt.</p>
+    <p>Mein Ziel: Einer der führenden Cybersecurity-Experten zu werden. Fokus: <strong>SIEM, EDR, Firewall, Pentesting</strong>.</p>
+  </section>
 
-  <div id="erfahrung" class="tab-content">
+  <!-- Erfahrung -->
+  <section id="erfahrung" class="tab-content">
     <h2>Berufserfahrung</h2>
-    <p><strong>Rana Applications UG</strong> – Praktikum als Cybersecurity Engineer</p>
-<p>• SIEM-Umgebung mit Splunk aufgebaut und optimiert; über 20.000 sicherheitsrelevante
-Logs analysiert, daraus 4 präzise Alarme und 5 benutzerdefinierte Dashboards zur
-frühzeitigen Erkennung von Sicherheitsvorfällen erstellt.</p>
-<p>• Firewall & IDS/IPS: Fortigate Firewall-Regeln überarbeitet, dadurch die Angriffsfläche
-um 15 % reduziert und in 10 realistischen Angriffssimulationen erfolgreich verteidigt.</p>
-<p>• EDR: Malware- und Endpoint-Analyse mit Sophos EDR & Wireshark durchgeführt; 2
-kritische Infektionen isoliert und Gegenmaßnahmen implementiert.</p>
-<p>• Penetrationstests: Schwachstellen-Scans mit Nessus/Qualys sowie OWASP-Tests auf
-Webanwendungen; identifizierte Sicherheitslücken priorisiert und gemeinsam mit dem
-Dev-Team behoben.</p>
-    
-    <p><strong>Quickly Transporte GmbH</strong> – Fuhrparkteams</p>
-    <p><strong>Ulu Çınar A.Ş</strong> – Bildungsberater</p>
-  </div>
+    <div class="cards">
+      <div class="card">
+        <h3><i class="fas fa-shield-alt"></i> Rana Applications UG</h3>
+        <p><em>Praktikum Cybersecurity Engineer (2024)</em></p>
+        <ul>
+          <li>Splunk SIEM aufgebaut & optimiert (20.000 Logs analysiert)</li>
+          <li>Firewall-Regeln überarbeitet, Angriffsfläche -15%</li>
+          <li>Malware-Analyse mit Sophos EDR & Wireshark</li>
+          <li>Pentests mit Nessus, Qualys, OWASP</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-truck"></i> Quickly Transporte GmbH</h3>
+        <p><em>Fuhrparkteams</em></p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-user-graduate"></i> Ulu Çınar A.Ş</h3>
+        <p><em>Bildungsberater</em></p>
+      </div>
+    </div>
+  </section>
 
-  <div id="projekte" class="tab-content">
-  <h2>Projekte</h2>
-  <div style="margin-bottom: 1.5rem;">
-    <strong>200+ TryHackMe Räume abgeschlossen</strong><br>
-    <strong>GitHub: Splunk, Firewall, EDR, Pentest</strong><br>
-  </div>
+  <!-- Projekte -->
+  <section id="projekte" class="tab-content">
+    <h2>Projekte</h2>
+    <div class="cards">
+      <div class="card">
+        <h3><i class="fas fa-database"></i> Splunk SIEM</h3>
+        <p>Installationen, Konfiguration & Dashboards</p>
+        <a href="https://github.com/ademataydir/splunk-use-cases" target="_blank">🔗 GitHub</a>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-fire"></i> Fortigate Firewall</h3>
+        <p>Konfigurationsschritte & Regeln</p>
+        <a href="https://github.com/ademataydir/Fortigate-Firewall" target="_blank">🔗 GitHub</a>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-user-secret"></i> Pentesting</h3>
+        <p>Nessus, Qualys, Nmap, Metasploit</p>
+        <a href="https://github.com/ademataydir/Nmap" target="_blank">🔗 GitHub</a>
+      </div>
+    </div>
+  </section>
 
-  <h3 style="margin-top:2rem;"><span style="color:var(--accent)">🚀 Siem-Splunk</span></h3>
-  <ul>
-    <li><a href="https://github.com/ademataydir/splunk-enterprise-installation-steps-on-windows" target="_blank">Splunk Enterprise installation steps on Windows</a></li>
-    <li><a href="https://github.com/ademataydir/splunk-universal-forwarder-installation-steps-on-windows" target="_blank">Splunk Universal Forwarder installation steps on Windows</a></li>
-    <li><a href="https://github.com/ademataydir/splunk-universal-forwarder-installation-steps-on-linux" target="_blank">Splunk Universal Forwarder installation steps on Linux</a></li>
-    <li><a href="https://github.com/ademataydir/sysmon-installation-steps-on-windows" target="_blank">Install Sysmon on Windows and forward the logs to Splunk Enterprise</a></li>
-    <li><a href="https://github.com/ademataydir/splunk-use-cases" target="_blank">Splunk Use Cases & Dashboards</a></li>
-  </ul>
+  <!-- Bildung -->
+  <section id="bildung" class="tab-content">
+    <h2>Bildung & Zertifikate</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Bildung</h3>
+        <p>🎓 Akdeniz Universität – Bachelor Finanz</p>
+        <p>🎓 OAK Academy – Cybersecurity Engineer</p>
+      </div>
+      <div class="card">
+        <h3>Zertifikate</h3>
+        <p>✅ CompTIA Security+</p>
+        <p>✅ CEH v12</p>
+        <p>✅ ISO 27001:2022 Associate</p>
+        <p>✅ Microsoft Cybersecurity Analyst</p>
+        <p>✅ ISC2 CC</p>
+        <p>✅ Google & AWS Cloud</p>
+        <p>✅ Fortinet Certified Associate</p>
+      </div>
+    </div>
+  </section>
 
-  <h3 style="margin-top:2rem;"><span style="color:var(--accent)">🚀 Fortigate-Firewall</span></h3>
-  <ul>
-    <li><a href="https://github.com/ademataydir/Fortigate-Firewall" target="_blank">Fortigate Firewall Configration Steps</a></li>
-  </ul>
-
-  <h3 style="margin-top:2rem;"><span style="color:var(--accent)">🚀 Sophos EDR</span></h3>
-  <ul>
-    <li><em>Bald verfügbar</em></li>
-  </ul>
-
-  <h3 style="margin-top:2rem;"><span style="color:var(--accent)">🚀 Pentesting</span></h3>
-  <ul>
-    <li><a href="https://github.com/ademataydir/vulnerability-management" target="_blank">Some concepts</a></li>
-    <li><a href="https://github.com/ademataydir/Nessus" target="_blank">Nessus</a></li>
-    <li><a href="https://github.com/ademataydir/Qualys" target="_blank">Qualys</a></li>
-    <li><a href="https://github.com/ademataydir/Nmap" target="_blank">Nmap</a></li>
-    <li><a href="https://github.com/ademataydir/Metasploit" target="_blank">Metasploit</a></li>
-  </ul>
-</div>
-  
-  <div id="bildung" class="tab-content">
-    <h1>Bildung & Zertifikate</h1>
-    <h2> Bildung</h2>
-    <p>Akdeniz Universität - Bachelor in Finanz</p>
-    <p>OAK Academy - Cybersecurity Engineer</p>
-    
-    <h2>Zertifikate</h2>
-<p>❖ CompTIA Security+</p>
-<p>❖ ISO 27001:2022 Information Security Associate</p>
-<p>❖ Certified Ethical Hacking v12 (CEH)</p>
-<p>❖ Microsoft Cybersecurity Analyst Professional</p>
-<p>❖ ISC2 CCCertified in Cybersecurity</p>
-<p>❖ Google Cloud Security</p>
-<p>❖ AWS Cloud Practitioner Essentials</p>
-<p>❖ Fortinet Certified Associate</p>
-  </div>
-
-  <div id="kontakt" class="tab-content">
+  <!-- Kontakt -->
+  <section id="kontakt" class="tab-content">
     <h2>Kontakt</h2>
     <form action="mailto:ataydiradem88@gmail.com" method="POST" enctype="text/plain">
       <input type="text" name="Name" placeholder="Ihr Name" required>
@@ -236,21 +302,39 @@ Dev-Team behoben.</p>
     <div class="social-icons">
       <a href="https://github.com/ademataydir" target="_blank"><i class="fab fa-github"></i></a>
       <a href="https://www.linkedin.com/in/adem-ataydir-cyber-security-engineer" target="_blank"><i class="fab fa-linkedin"></i></a>
-     </div>
-  </div>
+    </div>
+  </section>
 
   <script>
     const tabButtons = document.querySelectorAll('.tablink');
     const tabContents = document.querySelectorAll('.tab-content');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
 
     tabButtons.forEach(button => {
       button.addEventListener('click', () => {
         tabButtons.forEach(btn => btn.classList.remove('active'));
         tabContents.forEach(content => content.classList.remove('active'));
-
         button.classList.add('active');
         document.getElementById(button.dataset.tab).classList.add('active');
+        if (window.innerWidth < 768) nav.classList.remove('open');
       });
+    });
+
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+
+    themeToggle.addEventListener('click', () => {
+      if (body.getAttribute('data-theme') === 'light') {
+        body.removeAttribute('data-theme');
+        themeToggle.classList.replace('fa-moon','fa-sun');
+      } else {
+        body.setAttribute('data-theme','light');
+        themeToggle.classList.replace('fa-sun','fa-moon');
+      }
     });
   </script>
 </body>
