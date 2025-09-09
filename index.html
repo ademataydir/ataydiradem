@@ -154,7 +154,7 @@
     @media (max-width: 768px) {
       .nav-links {
         display: none;
-        flex-direction: column;
+        flex-direction: row;
         background: rgba(10,14,20,0.95);
         position: absolute;
         top: 60px;
@@ -169,7 +169,7 @@
       .theme-toggle { margin: 1rem 0 0 0; }
     }
 
-    /* Sağ alt sabit sosyal ikonlar */
+    /* Sağ alt köşeye sabit sosyal ikonlar */
     .social-fixed {
       position: fixed;
       bottom: 20px;
@@ -179,6 +179,7 @@
       gap: 0.8rem;
       z-index: 999;
     }
+
     .social-fixed a {
       color: var(--text);
       font-size: 1.6rem;
@@ -187,12 +188,16 @@
       border-radius: 50%;
       transition: all 0.3s ease;
     }
+
+    /* Hover animasyonu */
     .social-fixed a:hover {
       transform: translateY(-4px) scale(1.1);
       background: var(--accent);
       color: #000;
       box-shadow: 0 4px 12px rgba(0,229,255,0.5);
     }
+
+    /* Mobilde ikon boyutu ve konum */
     @media (max-width: 768px) {
       .social-fixed {
         flex-direction: row;
@@ -211,42 +216,6 @@
     .card i {
       margin-right: 0.5rem;
       color: var(--accent);
-    }
-
-    /* Startseite Cyber Visual ve Terminal */
-    #cyber-visual {
-      margin: 2rem auto;
-      max-width: 800px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    #cyber-visual img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 24px rgba(0,229,255,0.3);
-    }
-    #terminal {
-      background: #0b0f14;
-      color: #00ffb3;
-      font-family: "Courier New", monospace;
-      width: 100%;
-      max-width: 700px;
-      height: 200px;
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: 0 4px 24px rgba(0,229,255,0.3);
-      overflow-y: auto;
-    }
-    #terminal span {
-      display: block;
-      animation: blink 1s infinite;
-    }
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
     }
   </style>
 </head>
@@ -269,20 +238,111 @@
     <img src="profil.jpg" alt="Adem Ataydir" style="width:140px;height:140px;border-radius:50%;display:block;margin:0 auto 1rem auto;border:3px solid var(--accent);box-shadow:0 2px 24px #00e5ff55;">
     <h1 style="text-align:center;">Hallo, ich bin Adem Ataydir<br><span style="color:var(--accent)">Cybersecurity Engineer</span></h1>
     <p style="text-align:center;">Ich unterstütze Unternehmen dabei, Systeme und Daten effektiv zu schützen.</p>
-
-    <!-- Cybersecurity Banner ve Terminal -->
-    <div id="cyber-visual">
-      <img src="cybersecurity-banner.jpg" alt="Cybersecurity Banner">
-      <div id="terminal"></div>
-    </div>
-
     <div style="text-align:center;margin-top:1rem;">
-      <a href="Adem_Ataydir_Cybersecurity_Engineer.pdf" download style="padding:0.8rem 1.2rem;background:var(--accent);color:#000;border-radius:8px;font-weight:bold;text-decoration:none;">📄 Lebenslauf Herunterladen</a>
+      <a href="cv.pdf" download style="padding:0.8rem 1.2rem;background:var(--accent);color:#000;border-radius:8px;font-weight:bold;text-decoration:none;">📄 Lebenslauf Herunterladen</a>
     </div>
   </div>
 
-  <!-- Diğer tab-content bölümleri aynı şekilde korunuyor... -->
+  <div id="ueber-mich" class="tab-content">
+    <p>Hallo, ich bin Adem Ataydır.</p>
+    <p>Mehr als 10 Jahre habe ich als IT-Techniker gearbeitet und dabei Computersysteme eingerichtet, gewartet und betreut.</p>
+    <p>Im Jahr 2024 habe ich ein intensives einjähriges Cybersecurity-Trainingsprogramm abgeschlossen.</p>
+    <p>In dieser Zeit konnte ich praktische Erfahrungen mit Tools und Konzepten wie Firewalls, EDR, SIEM und Penetration Testing sammeln.</p>
+    <p>Anschließend absolvierte ich ein zweimonatiges Praktikum, in dem ich die zuvor erworbenen theoretischen Kenntnisse in der Praxis anwenden und vertiefen konnte.</p>
+    <p>Darüber hinaus bilde ich mich kontinuierlich weiter, unter anderem durch praktische Übungen auf der Plattform TryHackMe.</p>
+    <p>Es ist meine Leidenschaft, die neuesten Technologien im Bereich der Cybersicherheit zu verfolgen, Systeme zu erkunden und mein Wissen stetig zu erweitern.</p>
+    <p>Mein Ziel ist es, einer der führenden Cybersecurity-Experten zu werden und mich auf diesem Weg jeden Tag weiterzuentwickeln.</p>
+    <p>Fokus auf SIEM, EDR, Firewall, Pentesting und mehr.</p>
+  </div>
 
+  <div id="erfahrung" class="tab-content">
+    <h2>Berufserfahrung</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Rana Applications UG  01/2025 - 03/2025</h3>
+        <p>Praktikum als Cybersecurity Engineer</p>
+        <ul>
+          <li>SIEM: Einrichtung einer SIEM-Umgebung mit Splunk (20.000+ Logs analysiert). Erstellung von 4 Alarmen & 5 Dashboards zur Erkennung von Sicherheitsvorfällen.</li>
+          <li>Firewall & IDS/IPS: Fortigate Firewall-Regeln optimiert & 10 Angriffssimulationen durchgeführt.</li>
+          <li>Endpoint Detection and Response: Malware-Analyse & Endpoint-Analyse mit Sophos EDR und Wireshark.</li>
+          <li>Penetrationstests: Schwachstellen-Scanning (Nessus/Qualys), OWASP Tests auf Webanwendungen.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Freiberuflich - IT Techniker  2011 - 2021</h3>
+        <p>Installation, Wartung und Reparatur von Computerhardware und -software.</p>
+      </div>
+      <div class="card">
+        <h3>Quickly Transporte GmbH  03/2023 - 04/2024</h3>
+        <p>Fuhrparkteams</p>
+      </div>
+      <div class="card">
+        <h3>Ulu Çınar A.Ş  07/2015 - 06/2020</h3>
+        <p>Bildungsberater</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="projekte" class="tab-content">
+    <h2>Projekte</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>🚀 SIEM - Splunk</h3>
+        <ul>
+          <li><a href="https://github.com/ademataydir/splunk-enterprise-installation-steps-on-windows" target="_blank">Splunk Enterprise installation steps on Windows</a></li>
+          <li><a href="https://github.com/ademataydir/splunk-universal-forwarder-installation-steps-on-windows" target="_blank">Splunk Universal Forwarder installation steps on Windows</a></li>
+          <li><a href="https://github.com/ademataydir/splunk-universal-forwarder-installation-steps-on-linux" target="_blank">Splunk Universal Forwarder installation steps on Linux</a></li>
+          <li><a href="https://github.com/ademataydir/sysmon-installation-steps-on-windows" target="_blank">Install Sysmon on Windows and forward the logs to Splunk Enterprise</a></li>
+          <li><a href="https://github.com/ademataydir/splunk-use-cases" target="_blank">Splunk Use Cases & Dashboards</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🚀 Fortigate Firewall</h3>
+        <a href="https://github.com/ademataydir/Fortigate-Firewall" target="_blank">Fortigate Config Steps</a>
+      </div>
+      <div class="card">
+        <h3>🚀 Pentesting</h3>
+        <ul>
+          <li><a href="https://github.com/ademataydir/vulnerability-management" target="_blank">Some concepts</a></li>
+          <li><a href="https://github.com/ademataydir/Nmap" target="_blank">Nmap</a></li>
+          <li><a href="https://github.com/ademataydir/Metasploit" target="_blank">Metasploit</a></li>
+          <li><a href="https://github.com/ademataydir/Nessus" target="_blank">Nessus</a></li>
+          <li><a href="https://github.com/ademataydir/Qualys" target="_blank">Qualys</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="bildung" class="tab-content">
+    <h1>Bildung & Zertifikate</h1>
+    <div class="card-grid">
+      <div class="card"><i class="fas fa-university"></i> Akdeniz Universität - Bachelor in Finanz</div>
+      <div class="card"><i class="fas fa-shield-alt"></i> OAK Academy - Cybersecurity Engineer</div>
+    </div>
+    <h2>Zertifikate</h2>
+    <div class="card-grid">
+      <div class="card"><i class="fas fa-lock"></i> CompTIA Security+</div>
+      <div class="card"><i class="fas fa-file-alt"></i> ISO 27001:2022 Information Security Associate</div>
+      <div class="card"><i class="fas fa-user-secret"></i> Certified Ethical Hacking v12 (CEH)</div>
+      <div class="card"><i class="fab fa-microsoft"></i> Microsoft Cybersecurity Analyst Professional</div>
+      <div class="card"><i class="fas fa-certificate"></i> ISC2 CC Certified in Cybersecurity</div>
+      <div class="card"><i class="fab fa-google"></i> Google Cloud Security</div>
+      <div class="card"><i class="fab fa-aws"></i> AWS Cloud Practitioner Essentials</div>
+      <div class="card"><i class="fas fa-shield-virus"></i> Fortinet Certified Associate</div>
+    </div>
+  </div>
+
+  <div id="kontakt" class="tab-content">
+    <h2>Kontakt</h2>
+    <form action="mailto:ataydiradem88@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="Name" placeholder="Ihr Name" required>
+      <input type="email" name="Email" placeholder="Ihre E-Mail" required>
+      <textarea name="Nachricht" placeholder="Ihre Nachricht" rows="5" required></textarea>
+      <button type="submit">Absenden</button>
+    </form>
+  </div>
+
+  <!-- Sağ alt sabit sosyal ikonlar -->
   <div class="social-fixed">
     <a href="https://github.com/ademataydir" target="_blank"><i class="fab fa-github"></i></a>
     <a href="https://www.linkedin.com/in/adem-ataydir-cyber-security-engineer" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -312,29 +372,6 @@
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('light');
     });
-
-    // Terminal JS
-    const terminal = document.getElementById("terminal");
-    const commands = [
-      "Initializing SIEM...",
-      "Scanning network 192.168.1.0/24...",
-      "Firewall rules updated.",
-      "Endpoint check complete.",
-      "Vulnerability scan finished.",
-      "All systems secure ✅"
-    ];
-    let i = 0;
-    function typeCommand() {
-      if (i < commands.length) {
-        const line = document.createElement("div");
-        line.textContent = "> " + commands[i];
-        terminal.appendChild(line);
-        terminal.scrollTop = terminal.scrollHeight;
-        i++;
-        setTimeout(typeCommand, 1000);
-      }
-    }
-    typeCommand();
   </script>
 </body>
 </html>
