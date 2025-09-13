@@ -4,8 +4,17 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Adem Ataydir – Cybersecurity Engineer</title>
+<link rel="icon" href="profil.jpg">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<!-- Google Analytics örnek kodu (kendi kodun ile değiştir!) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123456789-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-123456789-1');
+</script>
 <style>
 :root {
   --bg: #0b0f14;
@@ -31,6 +40,30 @@ body {
   font-family: Inter, sans-serif;
   overflow-x: hidden;
 }
+/* Dil seçici */
+.lang-switch {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  z-index: 2001;
+  font-size: 1.06rem;
+  background: rgba(0,0,0,0.09);
+  border-radius: 8px;
+  padding: 0.18rem 0.65rem 0.18rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  transition: background .18s, border .18s;
+}
+.lang-switch:hover {
+  background: var(--accent-2);
+  color: #111;
+  border: 1px solid var(--accent);
+}
+.lang-switch i { margin-right: 0.24rem; }
 header {
   background: rgba(10,14,20,0.95);
   border-bottom: 1px solid var(--border);
@@ -68,24 +101,33 @@ nav button {
   color: var(--muted);
   font-weight: 600;
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  padding: 0.7rem 1.3rem;
+  border-radius: 10px;
+  transition: all 0.3s cubic-bezier(.5,1.6,.4,1), box-shadow 0.3s;
   z-index: 1001;
+  font-size: 1.08rem;
 }
 nav button.active, nav button:hover {
   color: var(--text);
   background: linear-gradient(135deg, rgba(0,229,255,.14), rgba(0,255,163,.12));
+  box-shadow: 0 2px 12px #00e5ff44;
+  letter-spacing: 0.3px;
 }
 .hamburger {
   display: none;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   background: none;
   border: none;
   color: var(--text);
   cursor: pointer;
   z-index: 1002;
+  margin-left: 1.3rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background .2s;
 }
+.hamburger:active,
+.hamburger:focus { background: var(--accent-2); }
 .nav-links {
   display: flex;
   gap: 1rem;
@@ -94,68 +136,68 @@ nav button.active, nav button:hover {
 .tab-content {
   position: relative;
   padding: 2rem;
-  padding-bottom: 120px; /* Kontakt bölümü için yer bırak */
+  padding-bottom: 140px;
   min-height: 70vh;
-  animation: fadeIn 0.6s ease-in-out;
+  display: none;
+  animation: fadeIn 0.6s cubic-bezier(.47,1.64,.41,.8);
   overflow-y: auto;
   z-index: 1;
-  display: none;
 }
 .tab-content.active { display: block; }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 h1,h2,h3 { font-family: Montserrat, sans-serif; }
 .card-grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  margin-bottom: 1.7rem;
 }
 .card {
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.02);
+  border: 1.5px solid var(--border);
+  background: rgba(255,255,255,0.03);
   border-radius: 12px;
-  padding: 1rem;
-  transition: transform 0.2s, box-shadow 0.3s;
+  padding: 1.2rem 1.1rem 1.7rem 1.1rem;
+  transition: transform 0.25s cubic-bezier(.13,.67,.41,1.12), box-shadow 0.32s, border 0.20s;
+  box-shadow: 0 2px 10px #00e5ff24;
+  position: relative;
+  overflow: hidden;
 }
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,229,255,0.3);
+  transform: translateY(-7px) scale(1.025);
+  box-shadow: 0 8px 26px #00e5ff66;
+  border: 1.5px solid var(--accent);
+}
+.card .tech-icons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 6px;
+  font-size: 1.13rem;
+}
+.card .tech-icons i { color: var(--accent-2);}
+.card .card-desc {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin: 0.4rem 0 0.2rem 0;
 }
 .theme-toggle {
   margin-left: 1rem;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
+  transition: color .18s;
 }
-.card i { margin-right: 0.5rem; color: var(--accent); }
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background: rgba(10,14,20,0.95);
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
-    padding: 1rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-  }
-  .nav-links.active { display: flex; }
-  .hamburger { display: block; }
-  .theme-toggle { margin: 1rem 0 0 0; }
-}
-
-/* Kontakt bölümü için ortalama ve görünüm */
+.theme-toggle:hover { color: var(--accent);}
 .footer-kontakt-wrapper {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+  pointer-events: none;
   position: absolute;
   left: 0;
   bottom: 0;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
 }
 .footer-kontakt {
   background: rgba(10,14,20,0.92);
@@ -195,13 +237,102 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
   background: rgba(0,0,0,0.08);
   padding: 0.4rem 0.6rem;
   border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, box-shadow .18s;
 }
 .footer-kontakt a:hover {
   background: var(--accent);
   color: #000;
+  box-shadow: 0 2px 8px #00e5ff55;
 }
 .footer-kontakt i { margin-right: 0.18rem; }
+
+.feedback-btn {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #0b0f14;
+  border: none;
+  border-radius: 22px;
+  font-size: 1.1rem;
+  padding: 0.6rem 1.5rem;
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 18px #00e5ff33;
+  transition: background .17s, color .17s;
+  z-index: 2200;
+}
+.feedback-btn:hover {
+  background: var(--accent-2);
+  color: #111;
+}
+#feedback-form-modal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  bottom: 60px;
+  transform: translateX(-50%);
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  border-radius: 18px;
+  padding: 1.6rem 1.3rem 1.1rem 1.3rem;
+  box-shadow: 0 7px 36px #00e5ff55;
+  z-index: 2300;
+  min-width: 310px;
+  max-width: 96vw;
+}
+#feedback-form-modal.active {
+  display: block;
+  animation: fadeIn 0.4s cubic-bezier(.47,1.64,.41,.8);
+}
+#feedback-form-modal h4 {
+  margin: 0 0 .7rem 0;
+  color: var(--accent);
+  font-family: Montserrat,sans-serif;
+  font-size: 1.1rem;
+  text-align: center;
+}
+#feedback-form-modal label { display: block; margin-bottom: 0.3rem; color:var(--muted);}
+#feedback-form-modal input, #feedback-form-modal textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 0.4rem 0.7rem;
+  margin-bottom: 0.9rem;
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+}
+#feedback-form-modal textarea { min-height: 56px; }
+#feedback-form-modal button[type="submit"] {
+  background: var(--accent);
+  color: #0b0f14;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.02rem;
+  padding: 0.45rem 1.2rem;
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .17s, color .17s;
+}
+#feedback-form-modal button[type="submit"]:hover {
+  background: var(--accent-2);
+  color: #111;
+}
+#feedback-form-modal .close-modal {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.25rem;
+  float: right;
+  cursor: pointer;
+  margin-top: -0.9rem;
+  margin-right: -0.7rem;
+}
+#feedback-form-modal .close-modal:hover { color: var(--accent);}
 @media (max-width: 768px) {
   .tab-content {
     padding-bottom: 150px;
@@ -215,14 +346,28 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
     gap: 0.7rem;
     flex-wrap: wrap;
   }
+  .lang-switch {
+    top: 15px;
+    right: 10px;
+    font-size: .97rem;
+    padding: 0.13rem 0.55rem 0.13rem 0.4rem;
+  }
+  .feedback-btn { font-size: 1rem; padding: 0.6rem 1rem;}
 }
 </style>
 </head>
 <body>
 
+<div class="lang-switch" id="lang-switch">
+  <i class="fas fa-globe"></i>
+  <span id="lang-current">DE</span>
+  <span style="opacity:.6;">/</span>
+  <span id="lang-toggle" style="text-decoration:underline;cursor:pointer;">TR</span>
+</div>
+
 <header>
   <div class="brand"><span class="badge">◆</span><span>Adem Ataydir</span></div>
-  <button class="hamburger"><i class="fas fa-bars"></i></button>
+  <button class="hamburger" aria-label="Menüyü Aç/Kapat"><i class="fas fa-bars"></i></button>
   <nav class="nav-links">
     <button class="tablink active" data-tab="startseite">Startseite</button>
     <button class="tablink" data-tab="ueber-mich">Über mich</button>
@@ -323,7 +468,12 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
     <div class="card">
       <h3>Rana Applications UG</h3>
       <p>01/2025 - 03/2025</p>
-      <p>Praktikum als Cybersecurity Engineer</p>
+      <div class="card-desc">Praktikum als Cybersecurity Engineer</div>
+      <div class="tech-icons">
+        <i class="fab fa-splunk"></i>
+        <i class="fas fa-shield-alt"></i>
+        <i class="fas fa-laptop-code"></i>
+      </div>
       <ul>
         <li>SIEM: Einrichtung einer SIEM-Umgebung mit Splunk (20.000+ Logs analysiert). Erstellung von 4 Alarmen & 5 Dashboards zur Erkennung von Sicherheitsvorfällen.</li>
         <li>Firewall & IDS/IPS: Fortigate Firewall-Regeln optimiert & 10 Angriffssimulationen durchgeführt.</li>
@@ -334,17 +484,21 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
     <div class="card">
       <h3>Freiberuflich - IT Techniker</h3>
       <p>2011 - 2021</p>
-      <p>Installation, Wartung und Reparatur von Computerhardware und -software.</p>
+      <div class="card-desc">Installation, Wartung und Reparatur von Computerhardware und -software.</div>
+      <div class="tech-icons">
+        <i class="fab fa-windows"></i>
+        <i class="fab fa-linux"></i>
+      </div>
     </div>
     <div class="card">
       <h3>Quickly Transporte GmbH</h3>
       <p>03/2023 - 04/2024</p>
-      <p>Fuhrparkteams</p>
+      <div class="card-desc">Fuhrparkteams</div>
     </div>
     <div class="card">
       <h3>Ulu Çınar A.Ş</h3>
       <p>07/2015 - 06/2020</p>
-      <p>Bildungsberater</p>
+      <div class="card-desc">Bildungsberater</div>
     </div>
   </div>
   <div class="footer-kontakt-wrapper">
@@ -371,6 +525,13 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
   <div class="card-grid">
     <div class="card">
       <h3>🚀 SIEM - Splunk</h3>
+      <div class="card-desc">Splunk ve log yönetimi üzerine use-case ve dashboard projeleri.</div>
+      <div class="tech-icons">
+        <i class="fab fa-splunk"></i>
+        <i class="fas fa-database"></i>
+        <i class="fab fa-windows"></i>
+        <i class="fab fa-linux"></i>
+      </div>
       <ul>
         <li><a href="https://github.com/ademataydir/splunk-enterprise-installation-steps-on-windows" target="_blank">Splunk Enterprise installation steps on Windows</a></li>
         <li><a href="https://github.com/ademataydir/splunk-universal-forwarder-installation-steps-on-windows" target="_blank">Splunk Universal Forwarder installation steps on Windows</a></li>
@@ -381,10 +542,22 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
     </div>
     <div class="card">
       <h3>🚀 Fortigate Firewall</h3>
+      <div class="card-desc">Fortigate konfigürasyon örnekleri ve güvenlik politikaları.</div>
+      <div class="tech-icons">
+        <i class="fas fa-shield-alt"></i>
+        <i class="fas fa-network-wired"></i>
+      </div>
       <a href="https://github.com/ademataydir/Fortigate-Firewall" target="_blank">Fortigate Config Steps</a>
     </div>
     <div class="card">
       <h3>🚀 Pentesting</h3>
+      <div class="card-desc">Nmap, Nessus, Metasploit ile pratik pentest çalışmaları ve dokümantasyon.</div>
+      <div class="tech-icons">
+        <i class="fas fa-bug"></i>
+        <i class="fas fa-search"></i>
+        <i class="fab fa-python"></i>
+        <i class="fas fa-terminal"></i>
+      </div>
       <ul>
         <li><a href="https://github.com/ademataydir/vulnerability-management" target="_blank">Some concepts</a></li>
         <li><a href="https://github.com/ademataydir/Nmap" target="_blank">Nmap</a></li>
@@ -448,14 +621,28 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
   </div>
 </div>
 
+<!-- Geri Bildirim Butonu ve Modalı -->
+<button class="feedback-btn" id="feedbackBtn"><i class="fas fa-comment-dots"></i> Geri Bildirim</button>
+<div id="feedback-form-modal">
+  <button class="close-modal" id="closeFeedback" title="Kapat"><i class="fas fa-times"></i></button>
+  <h4>Geri Bildirim Bırak</h4>
+  <form id="feedbackForm" autocomplete="off">
+    <label for="feedback-name">Adınız (isteğe bağlı):</label>
+    <input type="text" id="feedback-name" name="name" maxlength="40">
+    <label for="feedback-msg">Mesajınız:</label>
+    <textarea id="feedback-msg" name="message" required maxlength="350" placeholder="Görüş, öneri veya hata bildirimi..."></textarea>
+    <button type="submit">Gönder</button>
+  </form>
+  <div id="feedback-result" style="display:none; margin-top:1rem;text-align:center;color:var(--accent-2);"></div>
+</div>
+
 <script>
+// Tab/menü işlemleri
 const tabButtons = document.querySelectorAll('.tablink');
 const tabContents = document.querySelectorAll('.tab-content');
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const themeToggle = document.querySelector('.theme-toggle');
-
-// Aktif sekmeyi localStorage'da tut
 function setActiveTab(tabName) {
   tabButtons.forEach(btn => btn.classList.remove('active'));
   tabContents.forEach(content => content.classList.remove('active'));
@@ -464,30 +651,52 @@ function setActiveTab(tabName) {
   localStorage.setItem('activeTab', tabName);
   navLinks.classList.remove('active');
 }
-
-// Tab tıklamalarında aktif sekmeyi ayarla
 tabButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    setActiveTab(button.dataset.tab);
-  });
+  button.addEventListener('click', () => setActiveTab(button.dataset.tab));
 });
-
-// Sayfa yüklenince localStorage'dan sekmeyi getir
 window.addEventListener('DOMContentLoaded', () => {
   const savedTab = localStorage.getItem('activeTab');
-  if (savedTab && document.getElementById(savedTab)) {
-    setActiveTab(savedTab);
+  if (savedTab && document.getElementById(savedTab)) setActiveTab(savedTab);
+  else setActiveTab('startseite');
+});
+// Mobil menü
+hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+themeToggle.addEventListener('click', () => document.body.classList.toggle('light'));
+
+// Dil seçici (örnek, sadece görsel işlev)
+const langCurrent = document.getElementById('lang-current');
+const langToggle = document.getElementById('lang-toggle');
+langToggle.addEventListener('click', () => {
+  if (langCurrent.textContent === 'DE') {
+    langCurrent.textContent = 'TR';
+    langToggle.textContent = 'DE';
+    // Burada istersen metinleri Türkçeleştirebilirsin
   } else {
-    setActiveTab('startseite');
+    langCurrent.textContent = 'DE';
+    langToggle.textContent = 'TR';
+    // Burada istersen metinleri Almancalaştırabilirsin
   }
 });
 
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
+// Geri Bildirim Modal
+const feedbackBtn = document.getElementById('feedbackBtn');
+const feedbackModal = document.getElementById('feedback-form-modal');
+const closeFeedback = document.getElementById('closeFeedback');
+const feedbackForm = document.getElementById('feedbackForm');
+const feedbackResult = document.getElementById('feedback-result');
+feedbackBtn.addEventListener('click', () => {
+  feedbackModal.classList.add('active');
+  feedbackResult.style.display = 'none';
+  feedbackForm.style.display = '';
 });
-
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('light');
+closeFeedback.addEventListener('click', () => feedbackModal.classList.remove('active'));
+feedbackForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Sözde backend: sadece başarı mesajı göster.
+  feedbackForm.style.display = 'none';
+  feedbackResult.style.display = '';
+  feedbackResult.textContent = "Teşekkürler! Geri bildiriminiz alındı.";
+  setTimeout(() => feedbackModal.classList.remove('active'), 2100);
 });
 </script>
 
