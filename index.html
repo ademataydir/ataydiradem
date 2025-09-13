@@ -34,8 +34,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;    /* DEĞİŞTİ */
-  top: 0;              /* EKLENDİ */
+  position: sticky;
+  top: 0;
   z-index: 1000;
 }
 .brand {
@@ -232,12 +232,21 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
     flex-wrap: wrap;
   }
 }
+
+/* EKLENDİ: Bildung simgeleri renk */
+#bildung .card i {
+  color: var(--accent-2);
+}
+
+/* EKLENDİ: Projekte bölümündeki linkler beyaz */
+#projekte .card a, #projekte .card a:visited {
+  color: #fff;
+}
 </style>
 </head>
 <body>
 
 <header>
-  <!-- LOGO VE İSİM KISMINI <a> İLE SARDIK -->
   <a href="#" class="brand" id="logo-link" style="text-decoration:none; color:inherit; cursor:pointer;">
     <span class="cyber-icon"><i class="fas fa-shield-alt"></i></span>
     <span>Adem Ataydir</span>
@@ -456,8 +465,6 @@ window.addEventListener('DOMContentLoaded', () => {
   else setActiveTab('startseite');
 });
 hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
-
-// LOGOYA TIKLAYINCA STARTSEITE'YE GİT FONKSİYONU EKLENDİ
 document.getElementById('logo-link').addEventListener('click', function(e) {
   e.preventDefault();
   setActiveTab('startseite');
