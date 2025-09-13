@@ -16,14 +16,6 @@
   --accent-2: #00ffa3;
   --border: #1f2a37;
 }
-body.light {
-  --bg: #ffffff;
-  --text: #111827;
-  --muted: #4b5563;
-  --accent: #2563eb;
-  --accent-2: #16a34a;
-  --border: #e5e7eb;
-}
 * { box-sizing: border-box; }
 body {
   margin: 0;
@@ -104,6 +96,23 @@ nav button.active, nav button:hover {
   gap: 1rem;
   z-index: 9999;
 }
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(10,14,20,0.97);
+    position: absolute;
+    top: 64px;
+    right: 0;
+    width: 220px;
+    padding: 1.3rem 0.7rem 1.1rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px #00e5ff22;
+  }
+  .nav-links.active { display: flex; }
+  .hamburger { display: block; }
+}
 .tab-content {
   position: relative;
   padding: 2rem;
@@ -152,13 +161,6 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
   color: var(--muted);
   margin: 0.4rem 0 0.2rem 0;
 }
-.theme-toggle {
-  margin-left: 1rem;
-  cursor: pointer;
-  font-size: 1.35rem;
-  transition: color .18s;
-}
-.theme-toggle:hover { color: var(--accent);}
 .footer-kontakt {
   background: rgba(10,14,20,0.92);
   border: 1px solid var(--border);
@@ -236,7 +238,6 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
     <button class="tablink" data-tab="erfahrung">Erfahrung</button>
     <button class="tablink" data-tab="projekte">Projekte</button>
     <button class="tablink" data-tab="bildung">Bildung</button>
-    <span class="theme-toggle"><i class="fas fa-adjust"></i></span>
   </nav>
 </header>
 
@@ -427,7 +428,6 @@ const tabButtons = document.querySelectorAll('.tablink');
 const tabContents = document.querySelectorAll('.tab-content');
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
-const themeToggle = document.querySelector('.theme-toggle');
 function setActiveTab(tabName) {
   tabButtons.forEach(btn => btn.classList.remove('active'));
   tabContents.forEach(content => content.classList.remove('active'));
@@ -445,7 +445,6 @@ window.addEventListener('DOMContentLoaded', () => {
   else setActiveTab('startseite');
 });
 hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
-themeToggle.addEventListener('click', () => document.body.classList.toggle('light'));
 </script>
 
 </body>
