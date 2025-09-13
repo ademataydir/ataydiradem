@@ -34,7 +34,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: sticky;    /* DEĞİŞTİ */
+  top: 0;              /* EKLENDİ */
   z-index: 1000;
 }
 .brand {
@@ -236,10 +237,11 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
 <body>
 
 <header>
-  <div class="brand">
+  <!-- LOGO VE İSİM KISMINI <a> İLE SARDIK -->
+  <a href="#" class="brand" id="logo-link" style="text-decoration:none; color:inherit; cursor:pointer;">
     <span class="cyber-icon"><i class="fas fa-shield-alt"></i></span>
     <span>Adem Ataydir</span>
-  </div>
+  </a>
   <button class="hamburger" aria-label="Menüyü Aç/Kapat"><i class="fas fa-bars"></i></button>
   <nav class="nav-links">
     <button class="tablink active" data-tab="startseite">Startseite</button>
@@ -454,6 +456,12 @@ window.addEventListener('DOMContentLoaded', () => {
   else setActiveTab('startseite');
 });
 hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+// LOGOYA TIKLAYINCA STARTSEITE'YE GİT FONKSİYONU EKLENDİ
+document.getElementById('logo-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  setActiveTab('startseite');
+});
 </script>
 
 </body>
