@@ -52,6 +52,13 @@ header {
   border-radius: 6px;
   display: grid;
   place-items: center;
+  font-size: 1rem;
+}
+.cyber-icon {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-left: 2px;
+  margin-right: 2px;
 }
 nav {
   display: flex;
@@ -162,15 +169,14 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
   margin: 0.4rem 0 0.2rem 0;
 }
 .footer-kontakt {
-  background: rgba(10,14,20,0.92);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: 0 2px 16px #00e5ff44;
-  padding: 1rem 1.4rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 1rem 1.4rem 2rem 1.4rem;
   min-width: 190px;
   max-width: 260px;
   margin: 2.5rem auto 1.5rem auto;
-  transition: box-shadow 0.2s, background 0.2s;
   text-align: center;
   pointer-events: auto;
   display: flex;
@@ -217,7 +223,7 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
   .footer-kontakt {
     min-width: 125px;
     max-width: 98vw;
-    padding: 0.7rem 0.7rem;
+    padding: 0.7rem 0.7rem 2rem 0.7rem;
     margin: 2.5rem auto 1.5rem auto;
   }
   .footer-kontakt .footer-links {
@@ -230,7 +236,11 @@ h1,h2,h3 { font-family: Montserrat, sans-serif; }
 <body>
 
 <header>
-  <div class="brand"><span class="badge">◆</span><span>Adem Ataydir</span></div>
+  <div class="brand">
+    <span class="badge">◆</span>
+    <span class="cyber-icon"><i class="fas fa-shield-alt"></i></span>
+    <span>Adem Ataydir</span>
+  </div>
   <button class="hamburger" aria-label="Menüyü Aç/Kapat"><i class="fas fa-bars"></i></button>
   <nav class="nav-links">
     <button class="tablink active" data-tab="startseite">Startseite</button>
