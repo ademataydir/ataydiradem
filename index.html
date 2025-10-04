@@ -488,14 +488,16 @@ function drawMatrix() {
 
   ctx.font = fontSize + "px monospace";
   ctx.fillStyle = "#00ff41";
-  for (let i = 0; i < getColumns(); i++) {
-    const text = letters[Math.floor(Math.random() * letters.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+  const speed = 0.25; // Hızı azaltmak için 0.25 gibi küçük bir değer kullan
 
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-      drops[i] = 0;
-    drops[i]++;
-  }
+for (let i = 0; i < getColumns(); i++) {
+  const text = letters[Math.floor(Math.random() * letters.length)];
+  ctx.fillText(text, i * fontSize, Math.floor(drops[i]) * fontSize);
+
+  if (Math.floor(drops[i]) * fontSize > canvas.height && Math.random() > 0.975)
+    drops[i] = 0;
+  drops[i] += speed;
+}
   requestAnimationFrame(drawMatrix);
 }
 drawMatrix();
